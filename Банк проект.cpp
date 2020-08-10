@@ -128,9 +128,8 @@ User* CheckUser(Terminal* one, const int money)
 			else
 			{
 				cout << "Вы успешно зашли на свой лицевой счет\n";
-				flag = true;
-				User* user = one->SearcheUser(id);
-				return user;
+				flag = true;	
+				return one->SearcheUser(id);
 			}
 		}
 	}
@@ -141,6 +140,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	const int money = 500;
 	long id;
+	bool flag;
 
 	Terminal* one = new Terminal();
 	User* user = CheckUser(one, money);
