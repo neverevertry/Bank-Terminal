@@ -1,0 +1,7 @@
+/.vs/Банк проект/v16/*.db
+/.vs/Банк проект/v16/*.opendb
+/.vs/Банк проект/v16/ipch/AutoPCH/6e79b6d4196ddc7b/*.ipch
+/x64/Debug/*.idb
+/x64/Debug/Банк проект.tlog/*.tlog
+/x64/Debug/Банк проект.tlog/*.lastbuildstate
+/x64/Debug/*.txt

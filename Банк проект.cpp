@@ -8,13 +8,9 @@ class User
 {
 private:
 	double amount;
-public:
 	long NumbCart;
-	User()
-	{
-		NumbCart = 0;
-		amount = 0;
-	}
+public:
+	
 	User(long _NumbCart, int _amount)
 	{
 		NumbCart = _NumbCart;
@@ -79,24 +75,28 @@ public:
 
 	User* SearcheUser(long _id)
 	{
-		User user;
-		FILE* USERINFO = fopen("UserInfo.dat", "rb");
+		//Т.к. при User* user = NULL память фактически НЕ выделяется то и записывать некуда, по-этому создаем память вручную с помощью функции malloc языка С 
+		User* user = (User*)malloc(sizeof(User));
+		FILE* USERINFO = fopen("UserInfo.dat", "r");
 		if (USERINFO == NULL)
+		{
 			cout << "файл не найден!\n";
+		}		
 		else
 		{
 			while (!feof(USERINFO))
 			{
-				fread(&user, sizeof(User), 1, USERINFO);
-				if (user.NumbCart == _id)
+				fread(user, sizeof(User), 1, USERINFO);
+				if (user->GetNumber() == _id)
 				{
-					return &user;
+					return user;
 					fclose(USERINFO);
 				}
 			}
 		}
-			return NULL;
+		
 		fclose(USERINFO);
+		return NULL;	
 	}
 };
 
