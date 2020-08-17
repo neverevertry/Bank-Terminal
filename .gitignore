@@ -5,3 +5,7 @@
 /x64/Debug/Банк проект.tlog/*.tlog
 /x64/Debug/Банк проект.tlog/*.lastbuildstate
 /x64/Debug/*.txt
+/.vs/Банк проект/v16/*.db-shm
+/.vs/Банк проект/v16/*.db-wal
+/.vs/Банк проект/v16/ipch/AutoPCH/47c214bb7e6ca0af/*.ipch
+/.vs/Банк проект/v16/ipch/AutoPCH/b5c5c6af9a0caea4/*.ipch
