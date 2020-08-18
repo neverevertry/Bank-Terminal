@@ -8,12 +8,9 @@ public:
 
 	User2(long _NumbCart, int _amount);
 
-	void Deposite(double _deposite);
-
-	void Withdraw(double _withdraw);
-
-	void ShowInfo();
-
 	long GetNumber();
+	int GetAmount();
+	void Deposite(int _add);
+	void WithDraw(int _TakeOff);
 };
 

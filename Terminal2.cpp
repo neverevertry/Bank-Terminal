@@ -10,60 +10,87 @@ Terminal2:: Terminal2(string _NameTerminal)
 	NameTerminal = _NameTerminal;
 }
 
-void Terminal2::WriteUser(User2* user)
+void Terminal2::GetUser(long _id)
 {
-	FILE* USERINFO = fopen("UserInfo.dat", "ab");
-	if (USERINFO == NULL)
-		cout << "файл не найден\n";
-	else
-		fwrite(user, sizeof(User2), 1, USERINFO);
+	UserBase2* _usersearche = new UserBase2();
+	this->user = _usersearche->SearchUser(_id);
 
-	fclose(USERINFO);
-}
-
-User2* Terminal2 :: SearcheUser(long _id)
-{
-	//Т.к. при User* user = NULL память фактически НЕ выделяется то и записывать некуда, по-этому создаем память вручную с помощью функции malloc языка С 
-	User2* user = (User2*)malloc(sizeof(User2));
-	FILE* USERINFO = fopen("UserInfo.dat", "r");
-	if (USERINFO == NULL)
-	{
-		cout << "файл не найден!\n";
-	}
-	else
-	{
-		while (!feof(USERINFO))
-		{
-			fread(user, sizeof(User2), 1, USERINFO);
-			if (user->GetNumber() == _id)
-			{
-				return user;
-				fclose(USERINFO);
-			}
-		}
-	}
-
-	fclose(USERINFO);
-	return NULL;
-}
-
-User2* Terminal2:: CheckUser(Terminal2* one, const int money)
-{
+	int count = 0;
 	bool flag = false;
+	
 	while (!flag)
 	{
-		long id;
-		cin >> id;
-		if (one->SearcheUser(id) == NULL)
+		if (this->user == NULL)
 		{
-			cout << "Ошибка ID, повторите попытку.\n";
+			int id;
+			cout << "Неверный ИД, повторите попытку\n";
+			cin >> id;
+			this->user = _usersearche->SearchUser(id);
+			count++;
 			flag = false;
 		}
 		else
 		{
-			cout << "Вы успешно зашли на свой лицевой счет\n";
+			cout << "Авторизация прошла успешно!\n";
 			flag = true;
-			return one->SearcheUser(id);
+		}
+		if (count == 5)
+		{
+			this->user = NULL;
+			break;
 		}
 	}
 }
+
+void Terminal2::UserWrite()
+{
+	UserBase2* _userwrite = new UserBase2();
+	_userwrite->UserWrite(this->user);
+}
+
+void Terminal2::Deposite(double _deposite)
+{
+	if (_deposite < 0)
+		cout << "Недостаточно средств для пополнения кошелька\n";
+	else
+	{
+		this->user->Deposite(_deposite);
+		cout << "Депозит успешно выполнен\n";
+	}
+}
+
+void Terminal2::Withdraw(double _withdraw)
+{
+	if (_withdraw > 0)
+	{
+		int amount = this->user->GetAmount();
+		int temp = amount - _withdraw;
+		if (temp < 0)
+		{
+			cout << "Операция невозможна\n";
+			cout << "Текущий балланс " << amount << endl;
+			cout << "Вы пытаетесь снять " << _withdraw << endl;
+		}
+		else
+		{
+			cout << "Операция прошла успешно \n";
+			this->user->WithDraw(_withdraw);
+		}
+	}
+	else
+	{
+		cout << "Операция не прошла!\n";
+	}
+}
+
+void Terminal2::ShowInfo()
+{
+	cout << "Ваш ид: " << user->GetNumber() << endl;
+	cout << "Балланс: " << user->GetAmount() << endl;
+}
+
+void Terminal2::EjectCard()
+{
+	user = NULL;
+}
+

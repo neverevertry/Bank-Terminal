@@ -6,6 +6,9 @@
 
 using namespace std;
 
+const int money = 500;
+
+
 class Bank
 {
 private:
@@ -24,18 +27,19 @@ public:
 };
 
 
-
 int main()
 {
 	setlocale(LC_ALL, "Russian");
-	const int money = 500;
-	long id;
 
 	Bank* one = new Bank();
-	Terminal2* terminal = one->GetIdTerminal(3);
-	User2* user = terminal->CheckUser(terminal, money);
-	/*one->terminal[1]->CheckUser(one->terminal[1], money);
-	User2* user = one->terminal[1]->CheckUser(one->terminal[1], money);*/
+	cout << "Выберите терминал: \n";
+	int terminalnubmer;
+	cin >> terminalnubmer;
+	Terminal2* terminal = one->GetIdTerminal(terminalnubmer);
+	cout << "Введите ид кароточки: \n";
+	long id;
+	cin >> id;
+	terminal->GetUser(id);
 	
 		int menu;
 		do
@@ -43,28 +47,34 @@ int main()
 			cout << "1.Положить наличные на счет\n";
 			cout << "2.Снять наличные со счета\n";
 			cout << "3.Информация\n";
-			cout << "0.Выход\n";
+			cout << "0.Завершить сенас\n";
 			cin >> menu;
 
 			switch (menu)
 			{
 			case 1:
 			{
-				user->Deposite(100);
-				terminal->WriteUser(user);
+				cout << "Введите сумму для взноса: \n";
+				double count;
+				cin >> count;
+				terminal->Deposite(count);
+				terminal->UserWrite();
 			}; break;
 			case 2:
 			{
-				user->Withdraw(50);
-				terminal->WriteUser(user);
-			}; break;
+				cout << "Введите сумму для вычита: \n";
+				double count;
+				cin >> count;
+				terminal->Withdraw(count);
+				terminal->UserWrite();
+ 			}; break;
 			case 3:
 			{
-				user->ShowInfo();
+				terminal->ShowInfo();
 			}; break;
 			case 0:
 			{
-				break;
+				terminal->EjectCard();
 			}; break;
 			}
 		} while (menu != 0);

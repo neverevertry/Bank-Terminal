@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="Terminal2.cpp" />
     <ClCompile Include="User2.cpp" />
+    <ClCompile Include="UserBase2.cpp" />
     <ClCompile Include="Банк проект.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Terminal2.h" />
     <ClInclude Include="User2.h" />
+    <ClInclude Include="UserBase2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
