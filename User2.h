@@ -1,12 +1,12 @@
 #pragma once
-class User2
+class User
 {
 private:
 	double amount;
-	long NumbCart;
+	long InsertCard;
 public:
 
-	User2(long _NumbCart, int _amount);
+	User(long _InsertCard, int _amount);
 
 	long GetNumber();
 	int GetAmount();

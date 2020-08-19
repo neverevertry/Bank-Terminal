@@ -12,15 +12,15 @@ const int money = 500;
 class Bank
 {
 private:
-	Terminal2* terminal[4];
+	Terminal* terminal[4];
 public:
 	Bank()
 	{
 		for (int i = 0; i < 4; i++)
-			terminal[i] = new Terminal2("№" + i);
+			terminal[i] = new Terminal("№" + i);
 	}
 
-	Terminal2* GetIdTerminal(int _TerminalId)
+	Terminal* GetIdTerminal(int _TerminalId)
 	{
 		return terminal[_TerminalId];
 	}
@@ -33,17 +33,19 @@ int main()
 
 	Bank* one = new Bank();
 	cout << "Выберите терминал: \n";
-	int terminalnubmer;
-	cin >> terminalnubmer;
-	Terminal2* terminal = one->GetIdTerminal(terminalnubmer);
+	int GetTerminalById;
+	cin >> GetTerminalById;
+	Terminal* terminal = one->GetIdTerminal(GetTerminalById);
 	cout << "Введите ид кароточки: \n";
 	long id;
 	cin >> id;
-	terminal->GetUser(id);
+	bool CheckUser = terminal->GetUser(id);
 	
+	if (CheckUser)
+	{
 		int menu;
 		do
-		{
+		{	
 			cout << "1.Положить наличные на счет\n";
 			cout << "2.Снять наличные со счета\n";
 			cout << "3.Информация\n";
@@ -67,7 +69,7 @@ int main()
 				cin >> count;
 				terminal->Withdraw(count);
 				terminal->UserWrite();
- 			}; break;
+			}; break;
 			case 3:
 			{
 				terminal->ShowInfo();
@@ -78,6 +80,11 @@ int main()
 			}; break;
 			}
 		} while (menu != 0);
+	}
+	else
+	{
+		return 0;
+	}
 
 	system("pause");
 	return 0;

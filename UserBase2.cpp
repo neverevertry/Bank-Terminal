@@ -6,20 +6,20 @@
 
 using namespace std;
 
-void UserBase2 :: UserWrite(User2* user)
+void UserBase :: UserWrite(User* user)
 {
 	FILE* USERINFO = fopen("UserInfo.dat", "ab");
 	if (USERINFO == NULL)
 		cout << "файл не найден\n";
 	else
-		fwrite(user, sizeof(User2), 1, USERINFO);
+		fwrite(user, sizeof(User), 1, USERINFO);
 
 	fclose(USERINFO);
 }
 
-User2* UserBase2:: SearchUser(long _id)
+User* UserBase::GetUserById(long _id)
 {
-	User2* user = (User2*)malloc(sizeof(User2));
+	User* user = (User*)malloc(sizeof(User));
 	FILE* USERINFO = fopen("UserInfo.dat", "r");
 	if (USERINFO == NULL)
 	{
@@ -29,7 +29,7 @@ User2* UserBase2:: SearchUser(long _id)
 	{
 		while (!feof(USERINFO))
 		{
-			fread(user, sizeof(User2), 1, USERINFO);
+			fread(user, sizeof(User), 1, USERINFO);
 			if (user->GetNumber() == _id)
 			{
 				return user;

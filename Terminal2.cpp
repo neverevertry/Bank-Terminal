@@ -5,92 +5,100 @@
 
 using namespace std;
 
-Terminal2:: Terminal2(string _NameTerminal)
+Terminal:: Terminal(string _NameTerminal)
 {
 	NameTerminal = _NameTerminal;
+	user = NULL;
+	usersearch = new UserBase();
 }
 
-void Terminal2::GetUser(long _id)
+bool Terminal::GetUser(long _id)
 {
-	UserBase2* _usersearche = new UserBase2();
-	this->user = _usersearche->SearchUser(_id);
+	UserBase* _usersearche = new UserBase();
+	this->user = _usersearche->GetUserById(_id);
 
 	int count = 0;
-	bool flag = false;
+	bool CheckUser = false;
 	
-	while (!flag)
+	while (!CheckUser)
 	{
 		if (this->user == NULL)
 		{
 			int id;
 			cout << "Неверный ИД, повторите попытку\n";
 			cin >> id;
-			this->user = _usersearche->SearchUser(id);
+			this->user = _usersearche->GetUserById(id);
 			count++;
-			flag = false;
+			CheckUser = false;
 		}
 		else
 		{
 			cout << "Авторизация прошла успешно!\n";
-			flag = true;
+			CheckUser = true;
+			return CheckUser;
 		}
 		if (count == 5)
 		{
 			this->user = NULL;
-			break;
+			CheckUser = false;
+			return CheckUser;
 		}
 	}
 }
 
-void Terminal2::UserWrite()
+void Terminal::UserWrite()
 {
-	UserBase2* _userwrite = new UserBase2();
-	_userwrite->UserWrite(this->user);
+	usersearch->UserWrite(this->user);
 }
 
-void Terminal2::Deposite(double _deposite)
+void Terminal::Deposite(double _deposite)
 {
-	if (_deposite < 0)
-		cout << "Недостаточно средств для пополнения кошелька\n";
+	if (this->user == NULL)
+		cout << "Ошибка!\n";
 	else
 	{
-		this->user->Deposite(_deposite);
-		cout << "Депозит успешно выполнен\n";
+		if (_deposite < 0)
+			cout << "Недостаточно средств для пополнения кошелька\n";
+		else
+		{
+			this->user->Deposite(_deposite);
+			cout << "Депозит успешно выполнен\n";
+		}
 	}
 }
 
-void Terminal2::Withdraw(double _withdraw)
+void Terminal::Withdraw(double _withdraw)
 {
-	if (_withdraw > 0)
+	if (this->user == NULL)
+		cout << "Ошибка!\n";
+	else
 	{
-		int amount = this->user->GetAmount();
-		int temp = amount - _withdraw;
-		if (temp < 0)
+		if (_withdraw > 0)
 		{
-			cout << "Операция невозможна\n";
-			cout << "Текущий балланс " << amount << endl;
-			cout << "Вы пытаетесь снять " << _withdraw << endl;
+			int amount = this->user->GetAmount();
+			int temp = amount - _withdraw;
+			if (temp < 0)
+				cout << "Операция невозможна\n";
+			else
+			{
+				cout << "Операция прошла успешно \n";
+				this->user->WithDraw(_withdraw);
+			}
 		}
 		else
 		{
-			cout << "Операция прошла успешно \n";
-			this->user->WithDraw(_withdraw);
+			cout << "Операция не прошла!\n";
 		}
-	}
-	else
-	{
-		cout << "Операция не прошла!\n";
 	}
 }
 
-void Terminal2::ShowInfo()
+void Terminal::ShowInfo()
 {
 	cout << "Ваш ид: " << user->GetNumber() << endl;
 	cout << "Балланс: " << user->GetAmount() << endl;
 }
 
-void Terminal2::EjectCard()
+void Terminal::EjectCard()
 {
 	user = NULL;
 }
-

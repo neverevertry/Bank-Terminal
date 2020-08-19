@@ -3,18 +3,16 @@
 #include <iostream>
 using namespace std;
 
-class Terminal2
+class Terminal
 {
 private:
 	string NameTerminal;
-	UserBase2* usersearch;
-	User2* user;
+	UserBase* usersearch;
+	User* user;
 public:
-	Terminal2(string _NameTerminal);
+	Terminal(string _NameTerminal);
 
-	void GetUser(long _id);
-
-	void CheckUser(long _id);
+	bool GetUser(long _id);
 	
 	void UserWrite();
 

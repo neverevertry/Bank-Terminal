@@ -3,28 +3,28 @@
 
 using namespace std;
 
-	User2:: User2 (long _NumbCart, int _amount)
+	User:: User (long _InsertCard, int _amount)
 	{
-		NumbCart = _NumbCart;
+		InsertCard = _InsertCard;
 		amount = _amount;
 	}
 
-	long User2:: GetNumber()
+	long User:: GetNumber()
 	{
-		return NumbCart;
+		return InsertCard;
 	}
 
-	int User2::GetAmount()
+	int User::GetAmount()
 	{
 		return amount;
 	}
 
-	void User2:: Deposite (int _add)
+	void User:: Deposite (int _add)
 	{
 		amount += _add;
 	}
 
-	void User2::WithDraw(int _TakeOff)
+	void User::WithDraw(int _TakeOff)
 	{
 		amount -= _TakeOff;
 	}

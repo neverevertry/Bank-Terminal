@@ -1,10 +1,10 @@
 #pragma once
 #include "User2.h"
-class UserBase2
+class UserBase
 {
 public:
-	void UserWrite(User2* user);
+	void UserWrite(User* user);
 
-	User2* SearchUser(long _id);
+	User* GetUserById(long _id);
 };
 
