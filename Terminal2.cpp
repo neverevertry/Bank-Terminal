@@ -12,10 +12,10 @@ Terminal:: Terminal(string _NameTerminal)
 	usersearch = new UserBase();
 }
 
-bool Terminal::GetUser(long _id)
+bool Terminal::GetUserById(long _id)
 {
-	UserBase* _usersearche = new UserBase();
-	this->user = _usersearche->GetUserById(_id);
+	
+	this->user = usersearch->GetUserById(_id);
 
 	int count = 0;
 	bool CheckUser = false;
@@ -27,7 +27,7 @@ bool Terminal::GetUser(long _id)
 			int id;
 			cout << "Неверный ИД, повторите попытку\n";
 			cin >> id;
-			this->user = _usersearche->GetUserById(id);
+			this->user = usersearch->GetUserById(id);
 			count++;
 			CheckUser = false;
 		}
@@ -63,6 +63,7 @@ void Terminal::Deposite(double _deposite)
 		{
 			this->user->Deposite(_deposite);
 			cout << "Депозит успешно выполнен\n";
+			this->UserWrite();
 		}
 	}
 }
@@ -83,6 +84,7 @@ void Terminal::Withdraw(double _withdraw)
 			{
 				cout << "Операция прошла успешно \n";
 				this->user->WithDraw(_withdraw);
+				this->UserWrite();
 			}
 		}
 		else

@@ -12,7 +12,7 @@ private:
 public:
 	Terminal(string _NameTerminal);
 
-	bool GetUser(long _id);
+	bool GetUserById(long _id);
 	
 	void UserWrite();
 

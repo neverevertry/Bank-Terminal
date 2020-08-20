@@ -20,7 +20,7 @@ public:
 			terminal[i] = new Terminal("№" + i);
 	}
 
-	Terminal* GetIdTerminal(int _TerminalId)
+	Terminal* GetTerminalById(int _TerminalId)
 	{
 		return terminal[_TerminalId];
 	}
@@ -33,13 +33,13 @@ int main()
 
 	Bank* one = new Bank();
 	cout << "Выберите терминал: \n";
-	int GetTerminalById;
-	cin >> GetTerminalById;
-	Terminal* terminal = one->GetIdTerminal(GetTerminalById);
+	int IdTerminal;
+	cin >> IdTerminal;
+	Terminal* terminal = one->GetTerminalById(IdTerminal);
 	cout << "Введите ид кароточки: \n";
 	long id;
 	cin >> id;
-	bool CheckUser = terminal->GetUser(id);
+	bool CheckUser = terminal->GetUserById(id);
 	
 	if (CheckUser)
 	{
@@ -60,7 +60,6 @@ int main()
 				double count;
 				cin >> count;
 				terminal->Deposite(count);
-				terminal->UserWrite();
 			}; break;
 			case 2:
 			{
@@ -68,7 +67,6 @@ int main()
 				double count;
 				cin >> count;
 				terminal->Withdraw(count);
-				terminal->UserWrite();
 			}; break;
 			case 3:
 			{
