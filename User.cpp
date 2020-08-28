@@ -1,4 +1,4 @@
-#include "User2.h"
+#include "User.h"
 #include <iostream>
 
 using namespace std;

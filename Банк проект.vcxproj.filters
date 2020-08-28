@@ -18,24 +18,30 @@
     <ClCompile Include="Банк проект.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Terminal2.cpp">
+    <ClCompile Include="Terminal.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="User2.cpp">
+    <ClCompile Include="User.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="UserBase2.cpp">
+    <ClCompile Include="UserBase.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="BanknoteVault.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Terminal2.h">
+    <ClInclude Include="Terminal.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="User2.h">
+    <ClInclude Include="User.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="UserBase2.h">
+    <ClInclude Include="UserBase.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="BanknoteVault.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

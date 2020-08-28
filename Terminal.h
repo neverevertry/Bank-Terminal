@@ -1,6 +1,7 @@
-#include "User2.h"
-#include "UserBase2.h"
+#include "User.h"
+#include "UserBase.h"
 #include <iostream>
+#include "BanknoteVault.h"
 using namespace std;
 
 class Terminal
@@ -9,6 +10,7 @@ private:
 	string NameTerminal;
 	UserBase* usersearch;
 	User* user;
+	BanknoteVault** CashKeeper;
 public:
 	Terminal(string _NameTerminal);
 
@@ -23,5 +25,11 @@ public:
 	void ShowInfo();
 
 	void EjectCard();
+
+	void LoadCash(BanknoteVault** _banknote);
+
+	bool CheckForIssuingBanknotes(int _WithdrawCountQuantity);
+
+
 };
 

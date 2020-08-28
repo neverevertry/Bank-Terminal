@@ -1,8 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "UserBase2.h"
-#include "Terminal2.h"
+#include <stdio.h>
+#include "UserBase.h"
+#include "Terminal.h"
 #include <iostream>
-
 
 using namespace std;
 

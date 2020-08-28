@@ -1,5 +1,5 @@
 #pragma once
-#include "User2.h"
+#include "User.h"
 class UserBase
 {
 public:
@@ -7,4 +7,3 @@ public:
 
 	User* GetUserById(long _id);
 };
-
